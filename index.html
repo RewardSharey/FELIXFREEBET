@@ -173,6 +173,32 @@
             border-color: var(--primary);
             transform: translateY(-2px);
         }
+        /* Facebook Button Header */
+
+.fb-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: linear-gradient(135deg, #1877f2, #0d5bc1);
+    color: white;
+    padding: 8px 14px;
+    border-radius: 10px;
+    font-size: 13px;
+    font-weight: 700;
+    text-decoration: none;
+    box-shadow: 0 4px 10px rgba(24,119,242,0.4);
+    transition: all 0.3s ease;
+}
+
+.fb-btn i {
+    font-size: 14px;
+}
+
+.fb-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 16px rgba(24,119,242,0.6);
+    background: linear-gradient(135deg, #0d5bc1, #1877f2);
+}
 
         /* Grid APK - 3 KOLOM SEPERTI SCREENSHOT */
         .grid-section {
@@ -999,13 +1025,24 @@ body::before {
     <header>
         <div class="container">
             <div class="header-content">
-                <div class="logo">
-                    <i class="fab fa-gg-circle"></i>
-                </div>
-                <div class="title-container">
-                    <h1>FelixFreebet</h1>
-                    <p>Download APK Gacor Terupdate Setiap Hari</p>
-                </div>
+    
+    <div class="logo">
+        <i class="fab fa-gg-circle"></i>
+    </div>
+
+    <div class="title-container">
+        <h1>FelixFreebet</h1>
+        <p>Download APK Gacor Terupdate Setiap Hari</p>
+    </div>
+
+    <!-- FB BUTTON -->
+    <a href="https://www.facebook.com/profile.php?id=100076555234710" 
+       target="_blank" 
+       class="fb-btn">
+        <i class="fab fa-facebook-f"></i>
+        FB
+    </a>
+
             </div>
         </div>
     </header>
