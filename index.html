@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+    <link rel="preconnect" href="https://res.cloudinary.com">
     <style>
         /* CSS Reset dan Base Styles */
         * {
@@ -49,7 +50,7 @@
         /* Header */
         header {
             background: linear-gradient(135deg, var(--secondary), var(--primary));
-            padding: 20px 0;
+            padding: 9px 0;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
             position: relative;
             margin-bottom: 20px;
@@ -140,6 +141,7 @@
             overflow-x: auto;
             gap: 10px;
             padding-bottom: 10px;
+            padding-top: 10px;
         }
 
         .filter-container::-webkit-scrollbar {
@@ -156,8 +158,8 @@
             background-color: #1e293b;
             border: 1px solid #475569;
             border-radius: 25px;
-            font-size: 14px;
-            font-weight: 600;
+            font-size: 10px;
+            font-weight: 1000;
             white-space: nowrap;
             cursor: pointer;
             transition: var(--transition);
@@ -192,10 +194,10 @@
 
         /* GRID 3 KOLOM */
         .apk-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 15px;
-        }
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+}
 
         /* CARD STYLE SEPERTI SCREENSHOT */
         .apk-card {
@@ -208,7 +210,26 @@
             border: 1px solid rgba(34, 197, 94, 0.1);
             display: flex;
             flex-direction: column;
+            backdrop-filter: blur(6px);
+            min-height: 260px;
+            min-height: 00px;
         }
+        /* OVERLAY WARNA TIPIS BERDASARKAN KATEGORI */
+
+.apk-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 16px;
+    z-index: 0;
+    pointer-events: none;
+}
+
+/* pastikan konten di atas overlay */
+.apk-card > * {
+    position: relative;
+    z-index: 2;
+}
 
         .apk-card:hover {
             transform: translateY(-8px);
@@ -218,97 +239,154 @@
 
         /* BADGE KATEGORI DI ATAS GAMBAR */
         .apk-badge {
-            position: absolute;
-            top: 12px;
-            left: 12px;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: white;
-            font-size: 11px;
-            padding: 6px 15px;
-            border-radius: 20px;
-            font-weight: 700;
-            z-index: 2;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-        }
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    color: white;
+    font-size: 10px;
+    padding: 4px 10px;
+    border-radius: 10px;
+    font-weight: 600;
+    z-index: 5;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+}
+/* WARNA PER KATEGORI */
+
+.badge-hot {
+    background: linear-gradient(135deg, #ef4444, #b91c1c);
+}
+
+.badge-new {
+    background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+}
+
+.badge-trending {
+    background: linear-gradient(135deg, #facc15, #ca8a04);
+    color: #1e293b;
+}
+
+.badge-gacor {
+    background: linear-gradient(135deg, #22c55e, #166534);
+}
+
+.badge-default {
+    background: linear-gradient(135deg, #64748b, #334155);
+}
+/* HOT */
+.apk-card:has(.badge-hot)::before {
+    background: linear-gradient(180deg, rgba(239,68,68,0.12), transparent 60%);
+}
+
+/* NEW */
+.apk-card:has(.badge-new)::before {
+    background: linear-gradient(180deg, rgba(59,130,246,0.12), transparent 60%);
+}
+
+/* TRENDING */
+.apk-card:has(.badge-trending)::before {
+    background: linear-gradient(180deg, rgba(250,204,21,0.12), transparent 60%);
+}
+
+/* GACOR */
+.apk-card:has(.badge-gacor)::before {
+    background: linear-gradient(180deg, rgba(34,197,94,0.12), transparent 60%);
+}
+
+/* DEFAULT */
+.apk-card:has(.badge-default)::before {
+    background: linear-gradient(180deg, rgba(148,163,184,0.08), transparent 60%);
+}
+
+.apk-card::before {
+    animation: softGlow 6s ease-in-out infinite;
+}
+
+@keyframes softGlow {
+    0% { opacity: 0.6; }
+    50% { opacity: 1; }
+    100% { opacity: 0.6; }
+}
 
         /* GAMBAR BESAR SEPERTI SCREENSHOT */
-        .apk-image {
-            width: 100%;
-            height: 140px;
-            background: linear-gradient(135deg, #334155, #1e293b);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 25px;
-            overflow: hidden;
-            position: relative;
-        }
+      .apk-image {
+    width: 100%;
+    height: 160px;
+    background: linear-gradient(180deg, #020617, #0f172a);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+    position: relative;
+    overflow: hidden;
+}
 
-        .apk-image::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(135deg, rgba(34, 197, 94, 0.1), rgba(22, 101, 52, 0.1));
-            z-index: 1;
-        }
-
+  
         .apk-image img {
-            width: 80px;
-            height: 80px;
-            object-fit: contain;
-            border-radius: 16px;
-            background: rgba(255, 255, 255, 0.1);
-            padding: 15px;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
-            z-index: 2;
-            position: relative;
-        }
-
+    width: 120px;
+    height: 120px;
+    object-fit: contain;
+    border-radius: 22px;
+    background: rgba(255,255,255,0.06);
+    padding: 12px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.45);
+    position: relative;
+    z-index: 2;
+}
+.apk-card:hover .apk-image img {
+    transform: scale(1.08);
+}
+.apk-image::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at top, rgba(34,197,94,0.15), transparent 70%);
+    z-index: 0;
+    pointer-events: none;
+}
         /* KONTEN CARD */
         .apk-content {
-            padding: 20px 15px;
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-        }
+    padding: 12px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
 
         /* NAMA APLIKASI BESAR */
         .apk-name {
-            font-weight: 700;
-            font-size: 16px;
-            margin-bottom: 15px;
-            color: white;
-            line-height: 1.3;
-            min-height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
+    font-weight: 1000;
+    font-size: 54px;
+    margin-bottom: 1px;
+    color: white;
+    line-height: 1.3;
+    height: 30px;
+    overflow: hidden;
+}
 
         /* TOMBOL DOWNLOAD BESAR SEPERTI SCREENSHOT */
         .apk-download-btn {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: white;
-            border: none;
-            border-radius: 12px;
-            padding: 16px;
-            width: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            cursor: pointer;
-            transition: var(--transition);
-            font-weight: 700;
-            font-size: 15px;
-            letter-spacing: 0.5px;
-            box-shadow: 0 4px 12px rgba(34, 197, 94, 0.3);
-        }
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 12px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1px;
+    cursor: pointer;
+    transition: var(--transition);
+    font-weight: 1000;
+    font-size: 13px;
+}
+        
+        .btn-hot { background: linear-gradient(135deg, #ef4444, #b91c1c); }
+.btn-new { background: linear-gradient(135deg, #3b82f6, #1d4ed8); }
+.btn-trending { background: linear-gradient(135deg, #facc15, #ca8a04); color:#1e293b; }
+.btn-gacor { background: linear-gradient(135deg, #22c55e, #166534); }
 
         .apk-download-btn:hover {
             transform: translateY(-3px);
@@ -727,7 +805,31 @@
             color: #cbd5e1;
             font-size: 16px;
         }
+/* =============================== */
+/* MAIN BACKGROUND ANIMATED GRID */
+/* =============================== */
 
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background-image:
+        linear-gradient(rgba(34,197,94,0.08) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(34,197,94,0.08) 1px, transparent 1px);
+    background-size: 50px 50px;
+    animation: mainGridMove 40s linear infinite;
+    z-index: -1;
+    pointer-events: none;
+}
+
+@keyframes mainGridMove {
+    from {
+        background-position: 0 0;
+    }
+    to {
+        background-position: 300px 300px;
+    }
+}
         /* Animasi untuk live activity */
         @keyframes slideIn {
             from { opacity: 0; transform: translateY(15px); }
@@ -775,36 +877,35 @@
             }
         }
 
-        @media (min-width: 992px) {
-            .container {
-                max-width: 960px;
-            }
-            
-            /* Tetap 3 kolom di desktop */
-            .apk-grid {
-                grid-template-columns: repeat(3, 1fr);
-                gap: 20px;
-            }
-            
-            .apk-image {
-                height: 160px;
-            }
-            
-            .apk-image img {
-                width: 100px;
-                height: 100px;
-            }
-        }
+        
 
         /* Untuk layar sangat kecil, jadi 2 kolom */
         @media (max-width: 400px) {
-            .apk-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
+
+    .apk-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+    }
+
+    .apk-image {
+    height: 160px;
+}
+
+    .apk-name {
+        font-size: 13px;
+    }
+
+}
+}
         }
     </style>
 </head>
 <body>
+<div class="bg-animation">
+    <span></span>
+    <span></span>
+    <span></span>
+</div>
     <!-- Modal Syarat & Ketentuan Awal - BUTTON FIXED -->
     <div id="termsModal" class="modal-overlay">
         <div class="modal-content">
@@ -1036,9 +1137,73 @@
         let searchQuery = '';
         let currentAppId = null;
         
+        // ================================
+// FUNCTION ACAK URUTAN APK (SHUFFLE)
+// ================================
+function shuffleArray(array) {
+    let shuffled = [...array]; // copy supaya data asli aman
+
+    for (let i = shuffled.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+
+        // tukar posisi
+        [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
+
+    return shuffled;
+}
+        
         // Data Dummy untuk Aktivitas
-        const dummyNames = ['BUDI', 'CACA', 'DEDI', 'ERNA', 'FANI', 'GUGUN', 'HANI', 'IRWAN', 'JOKO', 'KIKI'];
-        const activityTypes = ['Withdraw', 'Komentar', 'Download', 'Registrasi'];
+        const dummyNames = [
+
+/* PRIA */
+'Budi','Agus','Adi','Dani','Dedi','Rizki','Fajar','Andi','Irfan','Hafiz',
+'Ridho','Arif','Yoga','Bayu','Arya','Rama','Raka','Ilham','Ferdi','Hendra',
+'Joko','Tono','Teguh','Bambang','Sutris','Santoso','Priyo','Haryo','Slamet','Suyanto',
+'Dewa','Wahyu','Rendi','Rio','Dimas','Reza','Bagas','Alvin','Robby','Fikri',
+'Riyan','Ikhsan','Maulana','Zaki','Naufal','Azka','Farhan','Aldi','Kevin','Rizal',
+'Putra','Pratama','Fauzan','Akbar','Hanif','Kurnia','Setiawan','Saputra','Wijaya','Susanto',
+
+'Asep','Ujang','Cecep','Dadang','Usep','Didin','Eman','Udin','Entis','Aang',
+'Rohman','Saepul','Yayan','Dadan','Herman','Jajang','Soleh','Ridwan','Iwan','Agung',
+
+'Rangga','Surya','Bagus','Galang','Yudha','Arman','Robby','Egi','Rizwan','Ardi',
+'Rizaldi','Alif','Iqbal','Fathur','Fikran','Hilmi','Azmi','Rifki','Ammar','Zidan',
+
+'Rizky','Rahmat','Basri','Hamzah','Ismail','Jamal','Hasan','Husein','Yusuf','Imam',
+'Fauzi','Fahrul','Zulfikar','Zainal','Abdul','Salman','Azhar','Kamal','Latif','Nizar',
+
+/* WANITA */
+'Siti','Aisyah','Dewi','Aulia','Putri','Nabila','Nadya','Intan','Rina','Wulan',
+'Sari','Fitri','Lestari','Kartika','Melati','Citra','Anisa','Salma','Nia','Ayu',
+'Rahayu','Ratna','Indah','Permata','Tiara','Zahra','Azzahra','Syifa','Kirana','Aurel',
+'Karina','Bella','Dinda','Novi','Eka','Riska','Maya','Tasya','Vina','Yuni',
+
+'Nur','Nuri','Ningsih','Sri','Sulastri','Sukma','Puspita','Anggraini','Febri','April',
+'Putriana','Ainun','Halima','Nafisa','Azizah','Ameera','Zara','Noura','Safira','Qisya',
+
+'Keysha','Keisha','Alya','Almira','Nayla','Hana','Farah','Aina','Rani','Lia',
+'Selvi','Salsa','Gita','Astri','Aurellya','Zivana','Nisya','Yasmin','Amelia','Nathalia',
+
+'Mutiara','Cahaya','Sekar','Mentari','Bunga','Mega','Riska','Wahyuni','Rofiqah','Latifah',
+
+/* NETRAL / UMUM */
+'Alex','Rere','Dio','Rafi','Niko','Adit','Evan','Rama','Vito','Reno',
+'Ara','Nara','Kayla','Kezia','Elina','Celine','Nina','Fina','Tomi','Ferry'
+
+];
+        const activityTypes = [
+'Withdraw',
+'Download',
+'Komentar',
+'Top Up',
+'Deposit',
+'Daftar',
+'Claim Bonus',
+'Update APK',
+'Login',
+'Review'
+];
         
         // Inisialisasi halaman
         document.addEventListener('DOMContentLoaded', function() {
@@ -1125,101 +1290,117 @@
             }, 30);
         }
 
-        // Live Activity Rotation
-        function startActivityRotation() {
-            const activityContainer = document.getElementById('activityItems');
-            
-            // Fungsi untuk generate aktivitas baru
-            function generateActivityItem() {
-                if (allApps.length === 0) {
-                    return generateDefaultActivity();
-                }
-                
-                const name = dummyNames[Math.floor(Math.random() * dummyNames.length)];
-                const type = activityTypes[Math.floor(Math.random() * activityTypes.length)];
-                const randomApp = allApps[Math.floor(Math.random() * allApps.length)];
-                const appName = randomApp.nama_app || 'Aplikasi Felix';
-                
-                let text = '';
-                if (type === 'Withdraw') {
-                    const amount = Math.floor(Math.random() * 500) * 1000 + 50000;
-                    text = `<span class="activity-name">${name}</span> withdraw ${amount.toLocaleString()} di <span class="activity-app">${appName}</span>`;
-                } else if (type === 'Komentar') {
-                    const comments = [
-                        'mantap banget',
-                        'withdraw lancar',
-                        'rekomendasi banget',
-                        'gacor terus nih',
-                        'baru download langsung menang',
-                        'top dah aplikasinya',
-                        'sangat memuaskan',
-                        'auto WD tanpa ribet'
-                    ];
-                    text = `<span class="activity-name">${name}</span> : <span class="activity-app">${appName}</span> ${comments[Math.floor(Math.random() * comments.length)]}`;
-                } else if (type === 'Download') {
-                    text = `<span class="activity-name">${name}</span> baru download <span class="activity-app">${appName}</span>`;
-                } else {
-                    text = `<span class="activity-name">${name}</span> baru saja registrasi di FelixFreebet`;
-                }
-                
-                return `
-                    <div class="activity-item">
-                        <div class="activity-type">${type}</div>
-                        <div class="activity-text">${text}</div>
-                    </div>
-                `;
-            }
-            
-            // Fallback jika belum ada data
-            function generateDefaultActivity() {
-                const name = dummyNames[Math.floor(Math.random() * dummyNames.length)];
-                const type = activityTypes[Math.floor(Math.random() * activityTypes.length)];
-                const apps = ['FelixSlot', 'FelixPoker', 'FelixCasino', 'FelixTogel', 'FelixFreebet'];
-                const appName = apps[Math.floor(Math.random() * apps.length)];
-                
-                let text = '';
-                if (type === 'Withdraw') {
-                    const amount = Math.floor(Math.random() * 500) * 1000 + 50000;
-                    text = `<span class="activity-name">${name}</span> withdraw ${amount.toLocaleString()} di <span class="activity-app">${appName}</span>`;
-                } else if (type === 'Komentar') {
-                    const comments = [
-                        'mantap banget',
-                        'withdraw lancar',
-                        'rekomendasi banget',
-                        'gacor terus nih'
-                    ];
-                    text = `<span class="activity-name">${name}</span> : <span class="activity-app">${appName}</span> ${comments[Math.floor(Math.random() * comments.length)]}`;
-                } else if (type === 'Download') {
-                    text = `<span class="activity-name">${name}</span> baru download <span class="activity-app">${appName}</span>`;
-                } else {
-                    text = `<span class="activity-name">${name}</span> baru saja registrasi di FelixFreebet`;
-                }
-                
-                return `
-                    <div class="activity-item">
-                        <div class="activity-type">${type}</div>
-                        <div class="activity-text">${text}</div>
-                    </div>
-                `;
-            }
-            
-            // Rotasi setiap 4 detik
-            const activityInterval = setInterval(() => {
-                if (activityContainer.children.length > 0) {
-                    activityContainer.removeChild(activityContainer.children[0]);
-                }
-                
-                const newItem = generateActivityItem();
-                activityContainer.insertAdjacentHTML('beforeend', newItem);
-                
-                const items = activityContainer.querySelectorAll('.activity-item');
-                if (items.length > 0) {
-                    items[items.length - 1].style.animation = 'slideIn 0.5s ease';
-                }
-            }, 4000);
-            
-            window.activityInterval = activityInterval;
+     // Live Activity Rotation (UPGRADED)
+function startActivityRotation() {
+
+    const activityContainer = document.getElementById('activityItems');
+
+    // WEIGHTED ACTIVITY (lebih realistis)
+    const weightedActivities = [
+        'Download','Download','Download',
+        'Komentar','Komentar',
+        'Withdraw',
+        'Deposit',
+        'Top Up',
+        'Claim Bonus',
+        'Login',
+        'Registrasi'
+    ];
+
+    const comments = [
+        'mantap banget',
+        'withdraw lancar',
+        'rekomendasi banget',
+        'gacor terus nih',
+        'baru download langsung menang',
+        'top dah aplikasinya',
+        'sangat memuaskan',
+        'auto WD tanpa ribet'
+    ];
+
+    const fallbackApps = ['FelixSlot', 'FelixPoker', 'FelixCasino', 'FelixTogel', 'FelixFreebet'];
+
+    function generateActivityItem() {
+
+        const name = dummyNames[Math.floor(Math.random() * dummyNames.length)];
+        const type = weightedActivities[Math.floor(Math.random() * weightedActivities.length)];
+
+        const randomApp = allApps.length > 0
+            ? allApps[Math.floor(Math.random() * allApps.length)]
+            : { nama_app: fallbackApps[Math.floor(Math.random() * fallbackApps.length)] };
+
+        const appName = randomApp.nama_app;
+
+        let text = '';
+
+        // RANDOM AMOUNT
+        const amount = Math.floor(Math.random() * 500) * 1000 + 50000;
+
+        if (type === 'Withdraw') {
+
+            text = `<span class="activity-name">${name}</span> withdraw ${amount.toLocaleString()} di <span class="activity-app">${appName}</span>`;
+
+        } else if (type === 'Deposit') {
+
+            text = `<span class="activity-name">${name}</span> deposit ${amount.toLocaleString()} di <span class="activity-app">${appName}</span>`;
+
+        } else if (type === 'Top Up') {
+
+            text = `<span class="activity-name">${name}</span> top up saldo ${amount.toLocaleString()}`;
+
+        } else if (type === 'Claim Bonus') {
+
+            text = `<span class="activity-name">${name}</span> klaim bonus harian`;
+
+        } else if (type === 'Komentar') {
+
+            const comment = comments[Math.floor(Math.random() * comments.length)];
+            text = `<span class="activity-name">${name}</span> : <span class="activity-app">${appName}</span> ${comment}`;
+
+        } else if (type === 'Download') {
+
+            text = `<span class="activity-name">${name}</span> baru download <span class="activity-app">${appName}</span>`;
+
+        } else if (type === 'Login') {
+
+            text = `<span class="activity-name">${name}</span> baru saja login`;
+
+        } else {
+
+            text = `<span class="activity-name">${name}</span> baru registrasi akun`;
+
         }
+
+        return `
+            <div class="activity-item">
+                <div class="activity-type">${type}</div>
+                <div class="activity-text">${text}</div>
+            </div>
+        `;
+    }
+
+    // ROTASI ITEM
+    const activityInterval = setInterval(() => {
+
+        // hapus item paling atas
+        if (activityContainer.children.length > 0) {
+            activityContainer.removeChild(activityContainer.children[0]);
+        }
+
+        // tambah item baru
+        const newItem = generateActivityItem();
+        activityContainer.insertAdjacentHTML('beforeend', newItem);
+
+        // animasi masuk
+        const items = activityContainer.querySelectorAll('.activity-item');
+        if (items.length > 0) {
+            items[items.length - 1].style.animation = 'slideIn 0.5s ease';
+        }
+
+    }, 1000); // lebih hidup (3.5 detik)
+
+    window.activityInterval = activityInterval;
+}
 
         // Load Apps dari Firestore
         function loadAppsFromFirestore() {
@@ -1250,14 +1431,22 @@
                     document.getElementById('totalApks').textContent = querySnapshot.size;
                     
                     querySnapshot.forEach((doc) => {
-                        const appData = doc.data();
-                        appData.id = doc.id;
-                        allApps.push(appData);
-                        
-                        // Create APK card
-                        const apkCard = createApkCard(appData);
-                        apkGrid.appendChild(apkCard);
-                    });
+    const appData = doc.data();
+    appData.id = doc.id;
+    allApps.push(appData);
+});
+
+// ============================
+// ACAK SEKALI SAAT AWAL MASUK
+// ============================
+
+const shuffledApps = shuffleArray(allApps);
+
+// render hasil acak
+shuffledApps.forEach(app => {
+    const apkCard = createApkCard(app);
+    apkGrid.appendChild(apkCard);
+});
                     
                     // Mulai live activity rotation setelah data APK dimuat
                     startActivityRotation();
@@ -1285,18 +1474,59 @@
             const stars = Math.min(5, Math.max(0, Math.floor(rating)));
             
             // Gunakan icon default jika tidak ada
-            const iconUrl = appData.image_icon || 'https://cdn-icons-png.flaticon.com/512/888/888879.png';
+         let iconUrl = appData.image_icon || '';
+
+// paksa https
+if (iconUrl.startsWith('http://')) {
+    iconUrl = iconUrl.replace('http://', 'https://');
+}
+
+// optimasi cloudinary (auto compress + resize)
+if (iconUrl.includes('res.cloudinary.com')) {
+    iconUrl = iconUrl.replace('/upload/', '/upload/f_auto,q_auto,w_200/');
+}
+
+// fallback final
+if (!iconUrl) {
+    iconUrl = 'https://cdn-icons-png.flaticon.com/512/888/888879.png';
+}
+
+// paksa https
+if (iconUrl.startsWith('http://')) {
+    iconUrl = iconUrl.replace('http://', 'https://');
+}
+
+// fallback kalau kosong
+if (!iconUrl) {
+    iconUrl = 'https://cdn-icons-png.flaticon.com/512/888/888879.png';
+}
             
             // Buat struktur seperti screenshot
-            card.innerHTML = `
-                <div class="apk-badge">${appData.kategori || 'APK'}</div>
+            const kategori = (appData.kategori || 'default').toLowerCase();
+
+let badgeClass = 'badge-default';
+
+if (kategori.includes('hot')) badgeClass = 'badge-hot';
+else if (kategori.includes('new')) badgeClass = 'badge-new';
+else if (kategori.includes('trending')) badgeClass = 'badge-trending';
+else if (kategori.includes('gacor')) badgeClass = 'badge-gacor';
+
+card.innerHTML = `
+    <div class="apk-badge ${badgeClass}">${appData.kategori || 'APK'}</div>
                 <div class="apk-image">
-                    <img src="${iconUrl}" alt="${appData.nama_app}" onerror="this.src='https://cdn-icons-png.flaticon.com/512/888/888879.png'">
+    <img 
+        src="${iconUrl}"
+        alt="${appData.nama_app}"
+        loading="lazy"
+        decoding="async"
+        onerror="this.onerror=null; this.src='https://cdn-icons-png.flaticon.com/512/888/888879.png';"
+    />
+</div>
                 </div>
                 <div class="apk-content">
                     <h3 class="apk-name">${appData.nama_app || 'Aplikasi Tanpa Nama'}</h3>
-                    <button class="apk-download-btn">
-                        <i class="fas fa-download"></i> DOWNLOAD
+                    <button class="apk-download-btn ${badgeClass.replace('badge','btn')}">
+                        <i class="fas fa-download"></i> ‎ DOWNLOAD
                     </button>
                 </div>
             `;
@@ -1376,7 +1606,24 @@
             
             // Update icon
             const modalIcon = document.getElementById('modalAppIcon');
-            modalIcon.src = appData.image_icon || 'https://cdn-icons-png.flaticon.com/512/888/888879.png';
+            let modalIconUrl = appData.image_icon || '';
+
+// paksa https
+if (modalIconUrl.startsWith('http://')) {
+    modalIconUrl = modalIconUrl.replace('http://', 'https://');
+}
+
+// cloudinary optimize
+if (modalIconUrl.includes('res.cloudinary.com')) {
+    modalIconUrl = modalIconUrl.replace('/upload/', '/upload/f_auto,q_auto,w_300/');
+}
+
+// fallback
+if (!modalIconUrl) {
+    modalIconUrl = 'https://cdn-icons-png.flaticon.com/512/888/888879.png';
+}
+
+modalIcon.src = modalIconUrl;
             modalIcon.alt = appData.nama_app || 'App Icon';
             
             // Show modal
