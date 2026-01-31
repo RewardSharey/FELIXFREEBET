@@ -21,6 +21,10 @@
             --primary: #22c55e;
             --secondary: #166534;
             --accent: #facc15;
+            --yellow-app: #fbbf24;
+            --green-app: #10b981;
+            --blue-app: #3b82f6;
+            --jkt-app: #8b5cf6;
             --neutral: #f3f4f6;
             --dark: #1f2937;
             --light: #ffffff;
@@ -39,7 +43,7 @@
             min-height: 100vh;
         }
 
-        /* Container dengan mobile first (3 kolom grid) */
+        /* Container dengan mobile first (4 kolom grid) */
         .container {
             width: 100%;
             max-width: 100%;
@@ -48,65 +52,127 @@
         }
 
         /* Header */
-        header {
-            background: linear-gradient(135deg, var(--secondary), var(--primary));
-            padding: 9px 0;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-            position: relative;
-            margin-bottom: 20px;
-        }
+header {
+    background: linear-gradient(135deg, var(--secondary), var(--primary));
+    padding: 10px 14px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    position: relative;
+}
 
-        .header-content {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            justify-content: center;
-        }
+/* Header Layout */
+.header-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
 
-        .logo {
-            color: white;
-            font-size: 36px;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-        }
+/* Left Group */
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
 
-        .title-container h1 {
-            font-size: 24px;
-            color: white;
-            line-height: 1.2;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-        }
+/* Logo */
+.logo {
+    color: #fff;
+    font-size: 32px;
+}
 
-        .title-container p {
-            font-size: 14px;
-            color: rgba(255, 255, 255, 0.9);
-        }
+/* Title */
+.title-container h1 {
+    font-size: 20px;
+    color: #fff;
+    line-height: 1.2;
+}
+
+.title-container p {
+    font-size: 12px;
+    color: rgba(255,255,255,0.9);
+}
+
+/* Social Icons */
+.social-icons {
+    display: flex;
+    gap: 10px;
+}
+
+.social-icon {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.18);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 15px;
+    text-decoration: none;
+    transition: 0.25s ease;
+}
+
+/* Hover Effect */
+.social-icon:hover {
+    transform: scale(1.12);
+}
+
+/* Brand Color Hover */
+.social-icon.facebook:hover {
+    background: #1877f2;
+}
+
+.social-icon.whatsapp:hover {
+    background: #25d366;
+}
+
+/* Mobile Optimization */
+@media (max-width: 600px) {
+
+    .logo {
+        font-size: 26px;
+    }
+
+    .title-container h1 {
+        font-size: 17px;
+    }
+
+    .title-container p {
+        font-size: 11px;
+    }
+
+    .social-icon {
+        width: 30px;
+        height: 30px;
+        font-size: 14px;
+    }
+}
 
         /* Statistik Bar */
         .stats-bar {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 12px;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
             margin: 20px 0;
         }
 
         .stat-card {
             background: linear-gradient(135deg, #1e293b, #334155);
             border-radius: var(--radius);
-            padding: 16px 12px;
+            padding: 16px 8px;
             text-align: center;
             box-shadow: var(--shadow);
             border: 1px solid rgba(34, 197, 94, 0.2);
         }
 
         .stat-value {
-            font-size: 26px;
+            font-size: 22px;
             font-weight: 700;
             color: var(--primary);
             margin-bottom: 4px;
         }
 
         .stat-label {
-            font-size: 12px;
+            font-size: 11px;
             color: var(--gray);
         }
 
@@ -139,7 +205,7 @@
         .filter-container {
             display: flex;
             overflow-x: auto;
-            gap: 10px;
+            gap: 8px;
             padding-bottom: 10px;
             padding-top: 10px;
         }
@@ -154,59 +220,88 @@
         }
 
         .filter-btn {
-            padding: 12px 20px;
+            padding: 10px 15px;
             background-color: #1e293b;
             border: 1px solid #475569;
             border-radius: 25px;
-            font-size: 10px;
+            font-size: 11px;
             font-weight: 1000;
             white-space: nowrap;
             cursor: pointer;
             transition: var(--transition);
             color: var(--light);
+            display: flex;
+            align-items: center;
+            gap: 5px;
         }
 
         .filter-btn.active,
         .filter-btn:hover {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
             color: white;
-            border-color: var(--primary);
+            border-color: transparent;
             transform: translateY(-2px);
         }
-        /* Facebook Button Header */
 
-.fb-btn {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    background: linear-gradient(135deg, #1877f2, #0d5bc1);
-    color: white;
-    padding: 8px 14px;
-    border-radius: 10px;
-    font-size: 13px;
-    font-weight: 700;
-    text-decoration: none;
-    box-shadow: 0 4px 10px rgba(24,119,242,0.4);
-    transition: all 0.3s ease;
-}
+        /* Warna kategori baru */
+        .filter-btn[data-filter="all"] {
+            border-color: var(--primary);
+        }
+        .filter-btn[data-filter="all"].active {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+        }
 
-.fb-btn i {
-    font-size: 14px;
-}
+        .filter-btn[data-filter="kuning"] {
+            border-color: var(--yellow-app);
+            color: var(--yellow-app);
+        }
+        .filter-btn[data-filter="kuning"].active {
+            background: linear-gradient(135deg, var(--yellow-app), #d97706);
+            color: #1e293b;
+        }
 
-.fb-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 16px rgba(24,119,242,0.6);
-    background: linear-gradient(135deg, #0d5bc1, #1877f2);
-}
+        .filter-btn[data-filter="hijau"] {
+            border-color: var(--green-app);
+            color: var(--green-app);
+        }
+        .filter-btn[data-filter="hijau"].active {
+            background: linear-gradient(135deg, var(--green-app), #047857);
+            color: white;
+        }
 
-        /* Grid APK - 3 KOLOM SEPERTI SCREENSHOT */
+        .filter-btn[data-filter="miring"] {
+            border-color: var(--blue-app);
+            color: var(--blue-app);
+        }
+        .filter-btn[data-filter="miring"].active {
+            background: linear-gradient(135deg, var(--blue-app), #1d4ed8);
+            color: white;
+        }
+
+        .filter-btn[data-filter="jkt"] {
+            border-color: var(--jkt-app);
+            color: var(--jkt-app);
+        }
+        .filter-btn[data-filter="jkt"].active {
+            background: linear-gradient(135deg, var(--jkt-app), #7c3aed);
+            color: white;
+        }
+
+        .filter-btn[data-filter="lainnya"] {
+            border-color: var(--gray);
+            color: var(--gray);
+        }
+        .filter-btn[data-filter="lainnya"].active {
+            background: linear-gradient(135deg, #94a3b8, #64748b);
+            color: white;
+        }
+
+        /* Grid APK - 4 KOLOM DI MOBILE */
         .grid-section {
             margin-bottom: 30px;
         }
 
         .section-title {
-            font-size: 22px;
+            font-size: 20px;
             margin-bottom: 20px;
             color: white;
             display: flex;
@@ -218,14 +313,14 @@
             color: var(--accent);
         }
 
-        /* GRID 3 KOLOM */
+        /* GRID 4 KOLOM DI MOBILE */
         .apk-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 18px;
-}
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+        }
 
-        /* CARD STYLE SEPERTI SCREENSHOT */
+        /* CARD STYLE SEPERTI ASLI */
         .apk-card {
             background: linear-gradient(135deg, #1e293b, #0f172a);
             border-radius: 16px;
@@ -236,188 +331,146 @@
             border: 1px solid rgba(34, 197, 94, 0.1);
             display: flex;
             flex-direction: column;
-            backdrop-filter: blur(6px);
-            min-height: 260px;
-            min-height: 00px;
+            min-height: 180px;
         }
-        /* OVERLAY WARNA TIPIS BERDASARKAN KATEGORI */
-
-.apk-card::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    border-radius: 16px;
-    z-index: 0;
-    pointer-events: none;
-}
-
-/* pastikan konten di atas overlay */
-.apk-card > * {
-    position: relative;
-    z-index: 2;
-}
 
         .apk-card:hover {
-            transform: translateY(-8px);
+            transform: translateY(-5px);
             box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
             border-color: var(--primary);
         }
 
-        /* BADGE KATEGORI DI ATAS GAMBAR */
+        /* BADGE KATEGORI BARU */
         .apk-badge {
-    position: absolute;
-    top: 8px;
-    left: 8px;
-    background: linear-gradient(135deg, var(--primary), var(--secondary));
-    color: white;
-    font-size: 10px;
-    padding: 4px 10px;
-    border-radius: 10px;
-    font-weight: 600;
-    z-index: 5;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.3);
-}
-/* WARNA PER KATEGORI */
+            position: absolute;
+            top: 8px;
+            left: 8px;
+            color: white;
+            font-size: 9px;
+            padding: 3px 8px;
+            border-radius: 10px;
+            font-weight: 600;
+            z-index: 5;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+        }
 
-.badge-hot {
-    background: linear-gradient(135deg, #ef4444, #b91c1c);
-}
+        /* WARNA BADGE BARU */
+        .badge-kuning {
+            background: linear-gradient(135deg, var(--yellow-app), #d97706);
+            color: #1e293b;
+        }
 
-.badge-new {
-    background: linear-gradient(135deg, #3b82f6, #1d4ed8);
-}
+        .badge-hijau {
+            background: linear-gradient(135deg, var(--green-app), #047857);
+            color: white;
+        }
 
-.badge-trending {
-    background: linear-gradient(135deg, #facc15, #ca8a04);
-    color: #1e293b;
-}
+        .badge-miring {
+            background: linear-gradient(135deg, var(--blue-app), #1d4ed8);
+            color: white;
+        }
 
-.badge-gacor {
-    background: linear-gradient(135deg, #22c55e, #166534);
-}
+        .badge-jkt {
+            background: linear-gradient(135deg, var(--jkt-app), #7c3aed);
+            color: white;
+        }
 
-.badge-default {
-    background: linear-gradient(135deg, #64748b, #334155);
-}
-/* HOT */
-.apk-card:has(.badge-hot)::before {
-    background: linear-gradient(180deg, rgba(239,68,68,0.12), transparent 60%);
-}
-
-/* NEW */
-.apk-card:has(.badge-new)::before {
-    background: linear-gradient(180deg, rgba(59,130,246,0.12), transparent 60%);
-}
-
-/* TRENDING */
-.apk-card:has(.badge-trending)::before {
-    background: linear-gradient(180deg, rgba(250,204,21,0.12), transparent 60%);
-}
-
-/* GACOR */
-.apk-card:has(.badge-gacor)::before {
-    background: linear-gradient(180deg, rgba(34,197,94,0.12), transparent 60%);
-}
-
-/* DEFAULT */
-.apk-card:has(.badge-default)::before {
-    background: linear-gradient(180deg, rgba(148,163,184,0.08), transparent 60%);
-}
-
-.apk-card::before {
-    animation: softGlow 6s ease-in-out infinite;
-}
-
-@keyframes softGlow {
-    0% { opacity: 0.6; }
-    50% { opacity: 1; }
-    100% { opacity: 0.6; }
-}
+        .badge-lainnya {
+            background: linear-gradient(135deg, #94a3b8, #64748b);
+            color: white;
+        }
 
         /* GAMBAR BESAR SEPERTI SCREENSHOT */
-      .apk-image {
-    width: 100%;
-    height: 160px;
-    background: linear-gradient(180deg, #020617, #0f172a);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 16px;
-    position: relative;
-    overflow: hidden;
-}
+        .apk-image {
+            width: 100%;
+            height: 100px;
+            background: linear-gradient(180deg, #020617, #0f172a);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px;
+            position: relative;
+            overflow: hidden;
+        }
 
-  
         .apk-image img {
-    width: 120px;
-    height: 120px;
-    object-fit: contain;
-    border-radius: 22px;
-    background: rgba(255,255,255,0.06);
-    padding: 12px;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.45);
-    position: relative;
-    z-index: 2;
-}
-.apk-card:hover .apk-image img {
-    transform: scale(1.08);
-}
-.apk-image::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(circle at top, rgba(34,197,94,0.15), transparent 70%);
-    z-index: 0;
-    pointer-events: none;
-}
+            width: 70px;
+            height: 70px;
+            object-fit: contain;
+            border-radius: 16px;
+            background: rgba(255,255,255,0.06);
+            padding: 8px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.45);
+            position: relative;
+            z-index: 2;
+        }
+
+        .apk-card:hover .apk-image img {
+            transform: scale(1.05);
+        }
+
+        .apk-image::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at top, rgba(34,197,94,0.15), transparent 70%);
+            z-index: 0;
+            pointer-events: none;
+        }
+
         /* KONTEN CARD */
         .apk-content {
-    padding: 12px;
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-}
+            padding: 10px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
 
-        /* NAMA APLIKASI BESAR */
+        /* NAMA APLIKASI */
         .apk-name {
-    font-weight: 1000;
-    font-size: 54px;
-    margin-bottom: 1px;
-    color: white;
-    line-height: 1.3;
-    height: 30px;
-    overflow: hidden;
-}
+            font-weight: 1000;
+            font-size: 12px;
+            margin-bottom: 8px;
+            color: white;
+            line-height: 1.3;
+            height: 32px;
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+        }
 
-        /* TOMBOL DOWNLOAD BESAR SEPERTI SCREENSHOT */
+        /* TOMBOL DOWNLOAD */
         .apk-download-btn {
-    background: linear-gradient(135deg, var(--primary), var(--secondary));
-    color: white;
-    border: none;
-    border-radius: 10px;
-    padding: 12px;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 1px;
-    cursor: pointer;
-    transition: var(--transition);
-    font-weight: 1000;
-    font-size: 13px;
-}
-        
-        .btn-hot { background: linear-gradient(135deg, #ef4444, #b91c1c); }
-.btn-new { background: linear-gradient(135deg, #3b82f6, #1d4ed8); }
-.btn-trending { background: linear-gradient(135deg, #facc15, #ca8a04); color:#1e293b; }
-.btn-gacor { background: linear-gradient(135deg, #22c55e, #166534); }
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 8px;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 1000;
+            font-size: 11px;
+            margin-top: auto;
+        }
+
+        /* WARNA TOMBOL SESUAI KATEGORI */
+        .btn-kuning { background: linear-gradient(135deg, var(--yellow-app), #d97706); color: #1e293b; }
+        .btn-hijau { background: linear-gradient(135deg, var(--green-app), #047857); }
+        .btn-miring { background: linear-gradient(135deg, var(--blue-app), #1d4ed8); }
+        .btn-jkt { background: linear-gradient(135deg, var(--jkt-app), #7c3aed); }
+        .btn-lainnya { background: linear-gradient(135deg, #94a3b8, #64748b); }
 
         .apk-download-btn:hover {
-            transform: translateY(-3px);
+            transform: translateY(-2px);
             box-shadow: 0 8px 20px rgba(34, 197, 94, 0.5);
-            background: linear-gradient(135deg, #16a34a, #14532d);
         }
 
         /* Live Activity */
@@ -441,9 +494,9 @@
         }
 
         .activity-item {
-            padding: 15px;
+            padding: 12px;
             border-bottom: 1px solid #334155;
-            transition: transform 0.5s ease;
+            animation: slideIn 0.5s ease;
         }
 
         .activity-item:last-child {
@@ -454,15 +507,15 @@
             display: inline-block;
             background: linear-gradient(135deg, var(--accent), #ca8a04);
             color: #1e293b;
-            font-size: 11px;
-            padding: 4px 12px;
+            font-size: 10px;
+            padding: 3px 10px;
             border-radius: 15px;
             margin-bottom: 8px;
             font-weight: 700;
         }
 
         .activity-text {
-            font-size: 14px;
+            font-size: 13px;
             line-height: 1.4;
             color: #e2e8f0;
         }
@@ -494,7 +547,7 @@
         }
 
         .footer-section h3 {
-            font-size: 20px;
+            font-size: 18px;
             margin-bottom: 15px;
             color: var(--primary);
         }
@@ -514,11 +567,38 @@
             display: flex;
             align-items: center;
             gap: 10px;
+            font-size: 14px;
         }
 
         .footer-section a:hover {
             color: var(--primary);
             transform: translateX(5px);
+        }
+
+        /* Social Links di Footer */
+        .footer-social {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-link {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 18px;
+            transition: var(--transition);
+            text-decoration: none;
+        }
+
+        .social-link:hover {
+            transform: translateY(-3px);
+            background: var(--primary);
         }
 
         .copyright {
@@ -530,7 +610,7 @@
             margin-top: 20px;
         }
 
-        /* Modal Syarat Ketentuan - BUTTON FIXED */
+        /* Modal Syarat Ketentuan */
         .modal-overlay {
             position: fixed;
             top: 0;
@@ -558,7 +638,6 @@
             position: relative;
             display: flex;
             flex-direction: column;
-            min-height: 400px;
             border: 2px solid var(--primary);
             color: white;
         }
@@ -831,39 +910,11 @@
             color: #cbd5e1;
             font-size: 16px;
         }
-/* =============================== */
-/* MAIN BACKGROUND ANIMATED GRID */
-/* =============================== */
 
-body::before {
-    content: "";
-    position: fixed;
-    inset: 0;
-    background-image:
-        linear-gradient(rgba(34,197,94,0.08) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(34,197,94,0.08) 1px, transparent 1px);
-    background-size: 50px 50px;
-    animation: mainGridMove 40s linear infinite;
-    z-index: -1;
-    pointer-events: none;
-}
-
-@keyframes mainGridMove {
-    from {
-        background-position: 0 0;
-    }
-    to {
-        background-position: 300px 300px;
-    }
-}
         /* Animasi untuk live activity */
         @keyframes slideIn {
             from { opacity: 0; transform: translateY(15px); }
             to { opacity: 1; transform: translateY(0); }
-        }
-
-        .activity-item {
-            animation: slideIn 0.5s ease;
         }
 
         /* Utility Classes */
@@ -889,49 +940,99 @@ body::before {
                 padding: 0 20px;
             }
             
-            .stats-bar {
-                grid-template-columns: repeat(4, 1fr);
+            .apk-grid {
+                grid-template-columns: repeat(6, 1fr);
+                gap: 18px;
+            }
+            
+            .apk-card {
+                min-height: 220px;
+            }
+            
+            .apk-image {
+                height: 140px;
+            }
+            
+            .apk-image img {
+                width: 90px;
+                height: 90px;
+            }
+            
+            .apk-name {
+                font-size: 14px;
+                height: 40px;
+            }
+            
+            .apk-download-btn {
+                padding: 10px;
+                font-size: 12px;
             }
             
             .footer-content {
                 flex-direction: row;
                 justify-content: space-between;
             }
+        }
+
+        @media (min-width: 1024px) {
+            .container {
+                max-width: 1000px;
+            }
             
-            .modal-content {
-                min-height: 450px;
+            .apk-grid {
+                grid-template-columns: repeat(8, 1fr);
             }
         }
 
-        
-
-        /* Untuk layar sangat kecil, jadi 2 kolom */
         @media (max-width: 400px) {
-
-    .apk-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 10px;
-    }
-
-    .apk-image {
-    height: 160px;
+            .apk-grid {
+                grid-template-columns: repeat(4, 1fr);
+                gap: 10px;
+            }
+            
+            .apk-image {
+                height: 90px;
+            }
+            
+            .apk-image img {
+                width: 60px;
+                height: 60px;
+            }
+            
+            .apk-name {
+                font-size: 11px;
+                height: 28px;
+            }
+            
+            .filter-btn {
+                padding: 8px 12px;
+                font-size: 10px;
+            }
+            
+            .stats-bar {
+                gap: 8px;
+            }
+            
+            .stat-card {
+                padding: 12px 6px;
+            }
+            
+            .stat-value {
+                font-size: 18px;
+            }
+            .divider {
+    width: 100%;
+    height: 0px;
+    background: rgba(255,255,255,0.2);
+    margin: 12px 0;
 }
-
-    .apk-name {
-        font-size: 13px;
-    }
-
-}
-}
+            .stat-label {
+                font-size: 9px;
+            }
         }
     </style>
 </head>
 <body>
-<div class="bg-animation">
-    <span></span>
-    <span></span>
-    <span></span>
-</div>
     <!-- Modal Syarat & Ketentuan Awal - BUTTON FIXED -->
     <div id="termsModal" class="modal-overlay">
         <div class="modal-content">
@@ -1021,51 +1122,85 @@ body::before {
         </div>
     </div>
 
-    <!-- Header -->
     <header>
-        <div class="container">
-            <div class="header-content">
-    
-    <div class="logo">
-        <i class="fab fa-gg-circle"></i>
-    </div>
+    <div class="container">
 
-    <div class="title-container">
-        <h1>FelixFreebet</h1>
-        <p>Download APK Gacor Terupdate Setiap Hari</p>
-    </div>
+        <div class="header-content">
 
-    <!-- FB BUTTON -->
-    <a href="https://www.facebook.com/profile.php?id=100076555234710" 
-       target="_blank" 
-       class="fb-btn">
-        <i class="fab fa-facebook-f"></i>
-        FB
-    </a>
+            <!-- LEFT -->
+            <div class="header-left">
+
+                <div class="logo">
+                    <i class="fab fa-gg-circle"></i>
+                </div>
+
+                <div class="title-container">
+                    <h1>FelixFreebet</h1>
+                    <p>Kumpulan Aplikasi Freebet Terbaru!</p>
+                </div>
 
             </div>
+
+            <!-- RIGHT -->
+            <div class="social-icons">
+
+                <a href="https://www.facebook.com/profile.php?id=100076555234710"
+                   class="social-icon facebook"
+                   target="_blank"
+                   title="Facebook Felix Freebet">
+
+                    <i class="fab fa-facebook-f"></i>
+
+                </a>
+
+                <a href="https://chat.whatsapp.com/EMqUIDEXF357PDjvCCtIga?mode=gi_t"
+                   class="social-icon whatsapp"
+                   target="_blank"
+                   title="Gabung Grup WhatsApp">
+
+                    <i class="fab fa-whatsapp"></i>
+
+                </a>
+
+            </div>
+
         </div>
-    </header>
+
+    </div>
+</header>
+
+<div class="divider"></div>
 
     <main class="container">
-        
-
         <!-- Search dan Filter -->
         <section class="search-section">
             <input type="text" id="searchInput" class="search-bar" placeholder="Cari aplikasi...">
             
             <div class="filter-container">
-                <button class="filter-btn active" data-filter="all">SEMUA</button>
-                <button class="filter-btn" data-filter="hot">HOT</button>
-                <button class="filter-btn" data-filter="new">NEW</button>
-                <button class="filter-btn" data-filter="trending">TRENDING</button>
-                <button class="filter-btn" data-filter="gacor">GACOR</button>
+                <button class="filter-btn active" data-filter="all">
+                    <i class="fas fa-layer-group"></i> SEMUA
+                </button>
+                <button class="filter-btn" data-filter="kuning">
+                    <i class="fas fa-fire"></i> KUNING
+                </button>
+                <button class="filter-btn" data-filter="hijau">
+                    <i class="fas fa-leaf"></i> HIJAU
+                </button>
+                <button class="filter-btn" data-filter="miring">
+                    <i class="fas fa-bolt"></i> MIRING
+                </button>
+                <button class="filter-btn" data-filter="jkt">
+                    <i class="fas fa-star"></i> JKT
+                </button>
+                <button class="filter-btn" data-filter="lainnya">
+                    <i class="fas fa-ellipsis-h"></i> LAINNYA
+                </button>
             </div>
         </section>
 
-        <!-- Grid APK - 3 KOLOM SEPERTI SCREENSHOT -->
+        <!-- Grid APK - 4 KOLOM DI MOBILE -->
         <section class="grid-section">
-            <h2 class="section-title"><i class="fas fa-rocket"></i> APK GACOR TERBARU</h2>
+            <h2 class="section-title"><i class="fas fa-rocket"></i> APK TERBARU</h2>
             <div id="apkGrid" class="apk-grid">
                 <!-- APK akan di-load dari Firestore di sini -->
                 <div class="loading">
@@ -1075,7 +1210,7 @@ body::before {
             </div>
         </section>
 
-<!-- Statistik -->
+        <!-- Statistik -->
         <section class="stats-bar">
             <div class="stat-card">
                 <div class="stat-value" id="dailyVisitors">0</div>
@@ -1083,7 +1218,7 @@ body::before {
             </div>
             <div class="stat-card">
                 <div class="stat-value" id="totalDownloads">0</div>
-                <div class="stat-label">Download Harian</div>
+                <div class="stat-label">Total Download</div>
             </div>
             <div class="stat-card">
                 <div class="stat-value">4.8</div>
@@ -1139,12 +1274,23 @@ body::before {
                     </ul>
                 </div>
                 <div class="footer-section">
-                    <h3>Aturan</h3>
-                    <ul>
-                        <li><a href="#"><i class="fas fa-gavel"></i> Syarat & Ketentuan</a></li>
-                        <li><a href="#"><i class="fas fa-lock"></i> Kebijakan Privasi</a></li>
-                        <li><a href="#"><i class="fas fa-exclamation-triangle"></i> Peringatan</a></li>
-                    </ul>
+                    <h3>Sosial Media</h3>
+                    <div class="footer-social">
+                        <a href="https://www.facebook.com/profile.php?id=100076555234710" class="social-link" target="_blank" title="Facebook">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="https://chat.whatsapp.com/EMqUIDEXF357PDjvCCtIga?mode=gi_t" class="social-link" target="_blank" title="WhatsApp Group">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                    </div>
+                    <div style="margin-top: 20px;">
+                        <p style="color: #cbd5e1; font-size: 14px;">
+                            <i class="fas fa-clock"></i> Update Setiap Hari
+                        </p>
+                        <p style="color: #cbd5e1; font-size: 14px; margin-top: 5px;">
+                            <i class="fas fa-shield-alt"></i> 100% Aman
+                        </p>
+                    </div>
                 </div>
             </div>
             <div class="copyright">
@@ -1175,72 +1321,24 @@ body::before {
         let currentAppId = null;
         
         // ================================
-// FUNCTION ACAK URUTAN APK (SHUFFLE)
-// ================================
-function shuffleArray(array) {
-    let shuffled = [...array]; // copy supaya data asli aman
+        // FUNCTION ACAK URUTAN APK (SHUFFLE)
+        // ================================
+        function shuffleArray(array) {
+            let shuffled = [...array]; // copy supaya data asli aman
 
-    for (let i = shuffled.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
+            for (let i = shuffled.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+            }
 
-        // tukar posisi
-        [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
-    }
-
-    return shuffled;
-}
+            return shuffled;
+        }
         
         // Data Dummy untuk Aktivitas
         const dummyNames = [
-
-/* PRIA */
-'Budi','Agus','Adi','Dani','Dedi','Rizki','Fajar','Andi','Irfan','Hafiz',
-'Ridho','Arif','Yoga','Bayu','Arya','Rama','Raka','Ilham','Ferdi','Hendra',
-'Joko','Tono','Teguh','Bambang','Sutris','Santoso','Priyo','Haryo','Slamet','Suyanto',
-'Dewa','Wahyu','Rendi','Rio','Dimas','Reza','Bagas','Alvin','Robby','Fikri',
-'Riyan','Ikhsan','Maulana','Zaki','Naufal','Azka','Farhan','Aldi','Kevin','Rizal',
-'Putra','Pratama','Fauzan','Akbar','Hanif','Kurnia','Setiawan','Saputra','Wijaya','Susanto',
-
-'Asep','Ujang','Cecep','Dadang','Usep','Didin','Eman','Udin','Entis','Aang',
-'Rohman','Saepul','Yayan','Dadan','Herman','Jajang','Soleh','Ridwan','Iwan','Agung',
-
-'Rangga','Surya','Bagus','Galang','Yudha','Arman','Robby','Egi','Rizwan','Ardi',
-'Rizaldi','Alif','Iqbal','Fathur','Fikran','Hilmi','Azmi','Rifki','Ammar','Zidan',
-
-'Rizky','Rahmat','Basri','Hamzah','Ismail','Jamal','Hasan','Husein','Yusuf','Imam',
-'Fauzi','Fahrul','Zulfikar','Zainal','Abdul','Salman','Azhar','Kamal','Latif','Nizar',
-
-/* WANITA */
-'Siti','Aisyah','Dewi','Aulia','Putri','Nabila','Nadya','Intan','Rina','Wulan',
-'Sari','Fitri','Lestari','Kartika','Melati','Citra','Anisa','Salma','Nia','Ayu',
-'Rahayu','Ratna','Indah','Permata','Tiara','Zahra','Azzahra','Syifa','Kirana','Aurel',
-'Karina','Bella','Dinda','Novi','Eka','Riska','Maya','Tasya','Vina','Yuni',
-
-'Nur','Nuri','Ningsih','Sri','Sulastri','Sukma','Puspita','Anggraini','Febri','April',
-'Putriana','Ainun','Halima','Nafisa','Azizah','Ameera','Zara','Noura','Safira','Qisya',
-
-'Keysha','Keisha','Alya','Almira','Nayla','Hana','Farah','Aina','Rani','Lia',
-'Selvi','Salsa','Gita','Astri','Aurellya','Zivana','Nisya','Yasmin','Amelia','Nathalia',
-
-'Mutiara','Cahaya','Sekar','Mentari','Bunga','Mega','Riska','Wahyuni','Rofiqah','Latifah',
-
-/* NETRAL / UMUM */
-'Alex','Rere','Dio','Rafi','Niko','Adit','Evan','Rama','Vito','Reno',
-'Ara','Nara','Kayla','Kezia','Elina','Celine','Nina','Fina','Tomi','Ferry'
-
-];
-        const activityTypes = [
-'Withdraw',
-'Download',
-'Komentar',
-'Top Up',
-'Deposit',
-'Daftar',
-'Claim Bonus',
-'Update APK',
-'Login',
-'Review'
-];
+            'BUDI','AGUS','ADI','DANI','DEDI','RIZKI','FAJAR','ANDI','IRFAN','HAFIZ',
+            'SARI','RINA','DEWI','ANI','NINA','YUNI','MELI','LINA','SITI','AISYAH'
+        ];
         
         // Inisialisasi halaman
         document.addEventListener('DOMContentLoaded', function() {
@@ -1276,7 +1374,7 @@ function shuffleArray(array) {
                 filterApps();
             });
             
-            // Filter buttons
+            // Filter buttons baru
             document.querySelectorAll('.filter-btn').forEach(button => {
                 button.addEventListener('click', function() {
                     document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
@@ -1303,7 +1401,7 @@ function shuffleArray(array) {
         // Inisialisasi Fake Statistics
         function initFakeStats() {
             // Daily visitors counter
-            let visitors = Math.floor(Math.random() * 500) + 8000;
+            let visitors = Math.floor(Math.random() * 500) + 800;
             let visitorCounter = 0;
             const visitorInterval = setInterval(() => {
                 if (visitorCounter <= visitors) {
@@ -1327,117 +1425,65 @@ function shuffleArray(array) {
             }, 30);
         }
 
-     // Live Activity Rotation (UPGRADED)
-function startActivityRotation() {
-
-    const activityContainer = document.getElementById('activityItems');
-
-    // WEIGHTED ACTIVITY (lebih realistis)
-    const weightedActivities = [
-        'Download','Download','Download',
-        'Komentar','Komentar',
-        'Withdraw',
-        'Deposit',
-        'Top Up',
-        'Claim Bonus',
-        'Login',
-        'Registrasi'
-    ];
-
-    const comments = [
-        'mantap banget',
-        'withdraw lancar',
-        'rekomendasi banget',
-        'gacor terus nih',
-        'baru download langsung menang',
-        'top dah aplikasinya',
-        'sangat memuaskan',
-        'auto WD tanpa ribet'
-    ];
-
-    const fallbackApps = ['FelixSlot', 'FelixPoker', 'FelixCasino', 'FelixTogel', 'FelixFreebet'];
-
-    function generateActivityItem() {
-
-        const name = dummyNames[Math.floor(Math.random() * dummyNames.length)];
-        const type = weightedActivities[Math.floor(Math.random() * weightedActivities.length)];
-
-        const randomApp = allApps.length > 0
-            ? allApps[Math.floor(Math.random() * allApps.length)]
-            : { nama_app: fallbackApps[Math.floor(Math.random() * fallbackApps.length)] };
-
-        const appName = randomApp.nama_app;
-
-        let text = '';
-
-        // RANDOM AMOUNT
-        const amount = Math.floor(Math.random() * 500) * 1000 + 50000;
-
-        if (type === 'Withdraw') {
-
-            text = `<span class="activity-name">${name}</span> withdraw ${amount.toLocaleString()} di <span class="activity-app">${appName}</span>`;
-
-        } else if (type === 'Deposit') {
-
-            text = `<span class="activity-name">${name}</span> deposit ${amount.toLocaleString()} di <span class="activity-app">${appName}</span>`;
-
-        } else if (type === 'Top Up') {
-
-            text = `<span class="activity-name">${name}</span> top up saldo ${amount.toLocaleString()}`;
-
-        } else if (type === 'Claim Bonus') {
-
-            text = `<span class="activity-name">${name}</span> klaim bonus harian`;
-
-        } else if (type === 'Komentar') {
-
-            const comment = comments[Math.floor(Math.random() * comments.length)];
-            text = `<span class="activity-name">${name}</span> : <span class="activity-app">${appName}</span> ${comment}`;
-
-        } else if (type === 'Download') {
-
-            text = `<span class="activity-name">${name}</span> baru download <span class="activity-app">${appName}</span>`;
-
-        } else if (type === 'Login') {
-
-            text = `<span class="activity-name">${name}</span> baru saja login`;
-
-        } else {
-
-            text = `<span class="activity-name">${name}</span> baru registrasi akun`;
-
+        // Live Activity Rotation
+        function startActivityRotation() {
+            const activityContainer = document.getElementById('activityItems');
+            const activityTypes = ['Withdraw', 'Download', 'Komentar', 'Top Up', 'Deposit'];
+            const fallbackApps = ['FelixSlot', 'FelixPoker', 'FelixCasino', 'FelixTogel', 'FelixFreebet'];
+            
+            function generateActivityItem() {
+                const name = dummyNames[Math.floor(Math.random() * dummyNames.length)];
+                const type = activityTypes[Math.floor(Math.random() * activityTypes.length)];
+                
+                const randomApp = allApps.length > 0
+                    ? allApps[Math.floor(Math.random() * allApps.length)]
+                    : { nama_app: fallbackApps[Math.floor(Math.random() * fallbackApps.length)] };
+                
+                const appName = randomApp.nama_app;
+                const amount = Math.floor(Math.random() * 500) * 1000 + 50000;
+                
+                let text = '';
+                if (type === 'Withdraw') {
+                    text = `<span class="activity-name">${name}</span> withdraw ${amount.toLocaleString()} di <span class="activity-app">${appName}</span>`;
+                } else if (type === 'Download') {
+                    text = `<span class="activity-name">${name}</span> baru download <span class="activity-app">${appName}</span>`;
+                } else if (type === 'Komentar') {
+                    const comments = ['mantap banget', 'withdraw lancar', 'rekomendasi banget', 'gacor terus nih'];
+                    const comment = comments[Math.floor(Math.random() * comments.length)];
+                    text = `<span class="activity-name">${name}</span> : <span class="activity-app">${appName}</span> ${comment}`;
+                } else {
+                    text = `<span class="activity-name">${name}</span> ${type.toLowerCase()} di <span class="activity-app">${appName}</span>`;
+                }
+                
+                return `
+                    <div class="activity-item">
+                        <div class="activity-type">${type}</div>
+                        <div class="activity-text">${text}</div>
+                    </div>
+                `;
+            }
+            
+            // Rotasi item
+            const activityInterval = setInterval(() => {
+                // hapus item paling atas
+                if (activityContainer.children.length > 0) {
+                    activityContainer.removeChild(activityContainer.children[0]);
+                }
+                
+                // tambah item baru
+                const newItem = generateActivityItem();
+                activityContainer.insertAdjacentHTML('beforeend', newItem);
+                
+                // animasi masuk
+                const items = activityContainer.querySelectorAll('.activity-item');
+                if (items.length > 0) {
+                    items[items.length - 1].style.animation = 'slideIn 0.5s ease';
+                }
+                
+            }, 3500);
+            
+            window.activityInterval = activityInterval;
         }
-
-        return `
-            <div class="activity-item">
-                <div class="activity-type">${type}</div>
-                <div class="activity-text">${text}</div>
-            </div>
-        `;
-    }
-
-    // ROTASI ITEM
-    const activityInterval = setInterval(() => {
-
-        // hapus item paling atas
-        if (activityContainer.children.length > 0) {
-            activityContainer.removeChild(activityContainer.children[0]);
-        }
-
-        // tambah item baru
-        const newItem = generateActivityItem();
-        activityContainer.insertAdjacentHTML('beforeend', newItem);
-
-        // animasi masuk
-        const items = activityContainer.querySelectorAll('.activity-item');
-        if (items.length > 0) {
-            items[items.length - 1].style.animation = 'slideIn 0.5s ease';
-        }
-
-    }, 1000); // lebih hidup (3.5 detik)
-
-    window.activityInterval = activityInterval;
-}
 
         // Load Apps dari Firestore
         function loadAppsFromFirestore() {
@@ -1468,22 +1514,36 @@ function startActivityRotation() {
                     document.getElementById('totalApks').textContent = querySnapshot.size;
                     
                     querySnapshot.forEach((doc) => {
-    const appData = doc.data();
-    appData.id = doc.id;
-    allApps.push(appData);
-});
+                        const appData = doc.data();
+                        appData.id = doc.id;
+                        
+                        // Mapping kategori lama ke kategori baru berdasarkan nama aplikasi atau kategori
+                        const appName = (appData.nama_app || '').toLowerCase();
+                        const kategori = (appData.kategori || '').toLowerCase();
+                        
+                        if (appName.includes('kuning') || kategori.includes('kuning')) {
+                            appData.newCategory = 'kuning';
+                        } else if (appName.includes('hijau') || kategori.includes('hijau')) {
+                            appData.newCategory = 'hijau';
+                        } else if (appName.includes('miring') || kategori.includes('miring')) {
+                            appData.newCategory = 'miring';
+                        } else if (appName.includes('jkt') || kategori.includes('jkt')) {
+                            appData.newCategory = 'jkt';
+                        } else {
+                            appData.newCategory = 'lainnya';
+                        }
+                        
+                        allApps.push(appData);
+                    });
 
-// ============================
-// ACAK SEKALI SAAT AWAL MASUK
-// ============================
+                    // Acak urutan APK
+                    const shuffledApps = shuffleArray(allApps);
 
-const shuffledApps = shuffleArray(allApps);
-
-// render hasil acak
-shuffledApps.forEach(app => {
-    const apkCard = createApkCard(app);
-    apkGrid.appendChild(apkCard);
-});
+                    // render hasil acak
+                    shuffledApps.forEach(app => {
+                        const apkCard = createApkCard(app);
+                        apkGrid.appendChild(apkCard);
+                    });
                     
                     // Mulai live activity rotation setelah data APK dimuat
                     startActivityRotation();
@@ -1499,71 +1559,45 @@ shuffledApps.forEach(app => {
                 });
         }
 
-        // Create APK Card Element - SEPERTI SCREENSHOT
+        // Create APK Card Element dengan kategori baru
         function createApkCard(appData) {
             const card = document.createElement('div');
             card.className = 'apk-card';
             card.dataset.id = appData.id;
-            card.dataset.category = appData.kategori || 'umum';
-            
-            // Format rating untuk filter
-            const rating = appData.rating || 0;
-            const stars = Math.min(5, Math.max(0, Math.floor(rating)));
+            card.dataset.category = appData.newCategory || 'lainnya';
             
             // Gunakan icon default jika tidak ada
-         let iconUrl = appData.image_icon || '';
-
-// paksa https
-if (iconUrl.startsWith('http://')) {
-    iconUrl = iconUrl.replace('http://', 'https://');
-}
-
-// optimasi cloudinary (auto compress + resize)
-if (iconUrl.includes('res.cloudinary.com')) {
-    iconUrl = iconUrl.replace('/upload/', '/upload/f_auto,q_auto,w_200/');
-}
-
-// fallback final
-if (!iconUrl) {
-    iconUrl = 'https://cdn-icons-png.flaticon.com/512/888/888879.png';
-}
-
-// paksa https
-if (iconUrl.startsWith('http://')) {
-    iconUrl = iconUrl.replace('http://', 'https://');
-}
-
-// fallback kalau kosong
-if (!iconUrl) {
-    iconUrl = 'https://cdn-icons-png.flaticon.com/512/888/888879.png';
-}
+            let iconUrl = appData.image_icon || '';
+            if (iconUrl.startsWith('http://')) {
+                iconUrl = iconUrl.replace('http://', 'https://');
+            }
+            if (iconUrl.includes('res.cloudinary.com')) {
+                iconUrl = iconUrl.replace('/upload/', '/upload/f_auto,q_auto,w_150/');
+            }
+            if (!iconUrl) {
+                iconUrl = 'https://cdn-icons-png.flaticon.com/512/888/888879.png';
+            }
             
-            // Buat struktur seperti screenshot
-            const kategori = (appData.kategori || 'default').toLowerCase();
-
-let badgeClass = 'badge-default';
-
-if (kategori.includes('hot')) badgeClass = 'badge-hot';
-else if (kategori.includes('new')) badgeClass = 'badge-new';
-else if (kategori.includes('trending')) badgeClass = 'badge-trending';
-else if (kategori.includes('gacor')) badgeClass = 'badge-gacor';
-
-card.innerHTML = `
-    <div class="apk-badge ${badgeClass}">${appData.kategori || 'APK'}</div>
+            // Badge berdasarkan kategori baru
+            const badgeClass = `badge-${appData.newCategory || 'lainnya'}`;
+            const badgeText = appData.newCategory ? appData.newCategory.toUpperCase() : 'APK';
+            const btnClass = `btn-${appData.newCategory || 'lainnya'}`;
+            
+            card.innerHTML = `
+                <div class="apk-badge ${badgeClass}">${badgeText}</div>
                 <div class="apk-image">
-    <img 
-        src="${iconUrl}"
-        alt="${appData.nama_app}"
-        loading="lazy"
-        decoding="async"
-        onerror="this.onerror=null; this.src='https://cdn-icons-png.flaticon.com/512/888/888879.png';"
-    />
-</div>
+                    <img 
+                        src="${iconUrl}"
+                        alt="${appData.nama_app}"
+                        loading="lazy"
+                        decoding="async"
+                        onerror="this.onerror=null; this.src='https://cdn-icons-png.flaticon.com/512/888/888879.png';"
+                    />
                 </div>
                 <div class="apk-content">
                     <h3 class="apk-name">${appData.nama_app || 'Aplikasi Tanpa Nama'}</h3>
-                    <button class="apk-download-btn ${badgeClass.replace('badge','btn')}">
-                        <i class="fas fa-download"></i> ‎ DOWNLOAD
+                    <button class="apk-download-btn ${btnClass}">
+                        <i class="fas fa-cloud-download-alt"></i>
                     </button>
                 </div>
             `;
@@ -1582,7 +1616,7 @@ card.innerHTML = `
             return card;
         }
 
-        // Filter Apps berdasarkan search dan kategori
+        // Filter Apps berdasarkan search dan kategori baru
         function filterApps() {
             const apkGrid = document.getElementById('apkGrid');
             const cards = apkGrid.querySelectorAll('.apk-card');
@@ -1594,27 +1628,16 @@ card.innerHTML = `
                 // Cek apakah sesuai dengan search query
                 const matchesSearch = searchQuery === '' || appName.includes(searchQuery);
                 
-                // Cek apakah sesuai dengan filter
+                // Cek apakah sesuai dengan filter baru
                 let matchesFilter = false;
                 if (currentFilter === 'all') {
                     matchesFilter = true;
-                } else if (currentFilter === 'hot') {
-                    // Untuk demo, kita anggap hot jika kategori HOT
-                    matchesFilter = appCategory.toLowerCase() === 'hot' || appCategory.toLowerCase() === 'populer';
-                } else if (currentFilter === 'new') {
-                    matchesFilter = appCategory.toLowerCase() === 'new' || appCategory.toLowerCase() === 'terbaru';
-                } else if (currentFilter === 'trending') {
-                    matchesFilter = appCategory.toLowerCase() === 'trending' || appCategory.toLowerCase() === 'viral';
-                } else if (currentFilter === 'gacor') {
-                    matchesFilter = appCategory.toLowerCase() === 'gacor' || appCategory.toLowerCase().includes('gacor');
+                } else {
+                    matchesFilter = appCategory === currentFilter;
                 }
                 
                 // Tampilkan atau sembunyikan card
-                if (matchesSearch && matchesFilter) {
-                    card.style.display = 'flex';
-                } else {
-                    card.style.display = 'none';
-                }
+                card.style.display = matchesSearch && matchesFilter ? 'flex' : 'none';
             });
         }
 
@@ -1632,7 +1655,7 @@ card.innerHTML = `
             
             // Update modal content
             document.getElementById('modalAppName').textContent = appData.nama_app || 'Aplikasi Tanpa Nama';
-            document.getElementById('modalAppCategory').textContent = appData.kategori || 'APK';
+            document.getElementById('modalAppCategory').textContent = appData.newCategory ? appData.newCategory.toUpperCase() : 'APK';
             document.getElementById('modalAppRating').textContent = (appData.rating || 0).toFixed(1);
             document.getElementById('modalAppDeveloper').textContent = appData.pembuat || '-';
             document.getElementById('modalAppSize').textContent = appData.ukuran_file || '-';
@@ -1644,23 +1667,13 @@ card.innerHTML = `
             // Update icon
             const modalIcon = document.getElementById('modalAppIcon');
             let modalIconUrl = appData.image_icon || '';
-
-// paksa https
-if (modalIconUrl.startsWith('http://')) {
-    modalIconUrl = modalIconUrl.replace('http://', 'https://');
-}
-
-// cloudinary optimize
-if (modalIconUrl.includes('res.cloudinary.com')) {
-    modalIconUrl = modalIconUrl.replace('/upload/', '/upload/f_auto,q_auto,w_300/');
-}
-
-// fallback
-if (!modalIconUrl) {
-    modalIconUrl = 'https://cdn-icons-png.flaticon.com/512/888/888879.png';
-}
-
-modalIcon.src = modalIconUrl;
+            if (modalIconUrl.startsWith('http://')) {
+                modalIconUrl = modalIconUrl.replace('http://', 'https://');
+            }
+            if (!modalIconUrl) {
+                modalIconUrl = 'https://cdn-icons-png.flaticon.com/512/888/888879.png';
+            }
+            modalIcon.src = modalIconUrl;
             modalIcon.alt = appData.nama_app || 'App Icon';
             
             // Show modal
