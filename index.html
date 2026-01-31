@@ -1033,36 +1033,6 @@ header {
     </style>
 </head>
 <body>
-    <!-- Modal Syarat & Ketentuan Awal - BUTTON FIXED -->
-    <div id="termsModal" class="modal-overlay">
-        <div class="modal-content">
-            <h2 class="modal-title"><i class="fas fa-exclamation-triangle"></i> PERINGATAN & SYARAT KETENTUAN</h2>
-            <div class="modal-body">
-                <p>Selamat datang di <strong>FelixFreebet</strong> - Platform download APK terupdate setiap hari.</p>
-                <p>Dengan mengakses dan menggunakan situs ini, Anda setuju untuk mematuhi syarat dan ketentuan berikut:</p>
-                <ul>
-                    <li>Situs ini hanya untuk tujuan hiburan dan informasi.</li>
-                    <li>Pengguna bertanggung jawab penuh atas penggunaan aplikasi yang didownload.</li>
-                    <li>Kami tidak bertanggung jawab atas kerugian atau masalah yang timbul dari penggunaan aplikasi.</li>
-                    <li>Pengguna wajib mematuhi hukum yang berlaku di wilayahnya masing-masing.</li>
-                    <li>Kami berhak mengubah syarat dan ketentuan tanpa pemberitahuan sebelumnya.</li>
-                    <li>APK yang tersedia di platform ini diperbarui setiap hari untuk performa terbaik.</li>
-                    <li>Semua aplikasi telah melalui screening awal untuk keamanan dasar.</li>
-                    <li>Pengguna disarankan untuk menggunakan antivirus pada perangkat masing-masing.</li>
-                    <li>Minimal usia pengguna adalah 18 tahun atau sesuai hukum setempat.</li>
-                    <li>Penggunaan aplikasi untuk kegiatan ilegal sepenuhnya tanggung jawab pengguna.</li>
-                </ul>
-                <p>Dengan menekan tombol "SAYA PAHAM", Anda menyetujui semua syarat dan ketentuan di atas.</p>
-                <p><strong>Perhatian:</strong> Jangan bagikan informasi pribadi Anda kepada siapapun.</p>
-                <p><strong>Tips Keamanan:</strong> Selalu periksa izin aplikasi sebelum menginstal.</p>
-            </div>
-            <!-- BUTTON FIXED di bagian bawah -->
-            <div class="modal-actions">
-                <button id="agreeBtn" class="modal-btn">SAYA PAHAM</button>
-            </div>
-        </div>
-    </div>
-
     <!-- Modal Detail APK -->
     <div id="apkModal" class="apk-modal-overlay">
         <div class="apk-modal-content">
@@ -1342,14 +1312,7 @@ header {
         
         // Inisialisasi halaman
         document.addEventListener('DOMContentLoaded', function() {
-            // Cek localStorage untuk modal syarat ketentuan
-            const termsAccepted = localStorage.getItem('felixfreebet_terms_accepted');
-            if (!termsAccepted) {
-                document.getElementById('termsModal').style.display = 'flex';
-            } else {
-                document.getElementById('termsModal').style.display = 'none';
-            }
-            
+           
             // Setup event listeners
             setupEventListeners();
             
@@ -1363,10 +1326,6 @@ header {
         // Setup Event Listeners
         function setupEventListeners() {
             // Tombol setuju syarat ketentuan
-            document.getElementById('agreeBtn').addEventListener('click', function() {
-                localStorage.setItem('felixfreebet_terms_accepted', 'true');
-                document.getElementById('termsModal').style.display = 'none';
-            });
             
             // Search input
             document.getElementById('searchInput').addEventListener('input', function(e) {
