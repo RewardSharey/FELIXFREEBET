@@ -1080,7 +1080,7 @@ header {
                 </div>
                 
                 <div class="apk-modal-description">
-                    <h3>Info APK</h3>
+                    <h3>Informasi</h3>
                     <p>Gunakan VPN Jika Link Tidak Bisa Di Akses ⚠️</p>
                 </div>
             </div>
@@ -1190,10 +1190,10 @@ header {
             </div>
             <div class="stat-card">
                 <div class="stat-value" id="totalDownloads">0</div>
-                <div class="stat-label">Total Download</div>
+                <div class="stat-label">Total Download Harian</div>
             </div>
             <div class="stat-card">
-                <div class="stat-value">4.8</div>
+                <div class="stat-value">4.9</div>
                 <div class="stat-label">Rating Web</div>
             </div>
             <div class="stat-card">
@@ -1362,7 +1362,7 @@ header {
         // Inisialisasi Fake Statistics
         function initFakeStats() {
             // Daily visitors counter
-            let visitors = Math.floor(Math.random() * 500) + 800;
+            let visitors = Math.floor(Math.random() * 2000) + 3500;
             let visitorCounter = 0;
             const visitorInterval = setInterval(() => {
                 if (visitorCounter <= visitors) {
@@ -1371,7 +1371,7 @@ header {
                 } else {
                     clearInterval(visitorInterval);
                 }
-            }, 50);
+            }, 30);
             
             // Total downloads counter
             let downloads = Math.floor(Math.random() * 2000) + 3500;
