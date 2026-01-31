@@ -1060,7 +1060,7 @@ header {
                     </div>
                     <div class="apk-modal-info-item">
                         <span class="info-label">Ukuran File</span>
-                        <span class="info-value" id="modalAppSize">-</span>
+                        <span class="info-value">30MB +</span>
                     </div>
                     <div class="apk-modal-info-item">
                         <span class="info-label">Dilihat</span>
@@ -1074,12 +1074,14 @@ header {
                 
                 <div class="apk-modal-description">
                     <h3>Deskripsi Aplikasi</h3>
-                    <p id="modalAppDescription">Deskripsi aplikasi akan ditampilkan di sini.</p>
+                    <p>BONUS DAFTAR 10K 🎁</p>
+                    <p>MINIMAL DEPOSIT 10K 💸</p>
+                    <p>MINIMAL WITHDRAW 30K 💰</p>
                 </div>
                 
                 <div class="apk-modal-description">
                     <h3>Info APK</h3>
-                    <p id="modalAppInfo">Informasi tambahan tentang APK.</p>
+                    <p>Gunakan VPN Jika Link Tidak Bisa Di Akses ⚠️</p>
                 </div>
             </div>
             
@@ -1617,9 +1619,6 @@ header {
             document.getElementById('modalAppCategory').textContent = appData.newCategory ? appData.newCategory.toUpperCase() : 'APK';
             document.getElementById('modalAppRating').textContent = (appData.rating || 0).toFixed(1);
             document.getElementById('modalAppDeveloper').textContent = appData.pembuat || '-';
-            document.getElementById('modalAppSize').textContent = appData.ukuran_file || '-';
-            document.getElementById('modalAppDescription').textContent = appData.deskripsi || 'Tidak ada deskripsi tersedia.';
-            document.getElementById('modalAppInfo').textContent = appData.info_apk || 'Tidak ada informasi tambahan.';
             document.getElementById('modalAppViews').textContent = (appData.view_count || 0).toLocaleString();
             document.getElementById('modalAppDownloads').textContent = (appData.download_count || 0).toLocaleString();
             
